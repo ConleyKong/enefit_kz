@@ -2,9 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {
-    "jp-MarkdownHeadingCollapsed": true
-   },
+   "metadata": {},
    "source": [
     "# Notebook relevant version changes\n",
     "\n",
@@ -198,7 +196,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 1,
    "metadata": {
     "collapsed": false,
     "jupyter": {
@@ -214,7 +212,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 2,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:52:41.483695Z",
@@ -224,7 +222,16 @@
      "shell.execute_reply.started": "2023-11-11T09:52:41.483663Z"
     }
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/site-packages/scipy/__init__.py:146: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.23.5\n",
+      "  warnings.warn(f\"A NumPy version >={np_minversion} and <{np_maxversion}\"\n"
+     ]
+    }
+   ],
    "source": [
     "#General\n",
     "import pandas as pd\n",
@@ -250,7 +257,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 3,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:52:49.572490Z",
@@ -267,7 +274,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 4,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:52:49.579818Z",
@@ -288,7 +295,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 5,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:52:49.617802Z",
@@ -314,7 +321,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 6,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:52:49.638510Z",
@@ -339,7 +346,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 7,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:53:16.297310Z",
@@ -349,120 +356,7 @@
      "shell.execute_reply.started": "2023-11-11T09:53:16.297276Z"
     }
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mtrain data has 2018352 rows and 9 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "   county  is_business  product_type  target  is_consumption  \\\n0       0            0             1   0.713               0   \n\n              datetime  data_block_id  row_id  prediction_unit_id  \n0  2021-09-01 00:00:00              0       0                   0  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>county</th>\n      <th>is_business</th>\n      <th>product_type</th>\n      <th>target</th>\n      <th>is_consumption</th>\n      <th>datetime</th>\n      <th>data_block_id</th>\n      <th>row_id</th>\n      <th>prediction_unit_id</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0</td>\n      <td>0</td>\n      <td>1</td>\n      <td>0.713</td>\n      <td>0</td>\n      <td>2021-09-01 00:00:00</td>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mclient data has 41919 rows and 7 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "   product_type  county  eic_count  installed_capacity  is_business  \\\n0             1       0        108              952.89            0   \n\n         date  data_block_id  \n0  2021-09-01              2  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>product_type</th>\n      <th>county</th>\n      <th>eic_count</th>\n      <th>installed_capacity</th>\n      <th>is_business</th>\n      <th>date</th>\n      <th>data_block_id</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>0</td>\n      <td>108</td>\n      <td>952.89</td>\n      <td>0</td>\n      <td>2021-09-01</td>\n      <td>2</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mhistorical weather data has 1710800 rows and 18 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "              datetime  temperature  dewpoint  rain  snowfall  \\\n0  2021-09-01 00:00:00         14.4      12.0   0.0       0.0   \n\n   surface_pressure  cloudcover_total  cloudcover_low  cloudcover_mid  \\\n0            1015.8                 4               4               0   \n\n   cloudcover_high  windspeed_10m  winddirection_10m  shortwave_radiation  \\\n0                0       6.694444                  3                  0.0   \n\n   direct_solar_radiation  diffuse_radiation  latitude  longitude  \\\n0                     0.0                0.0      57.6       21.7   \n\n   data_block_id  \n0              1  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>datetime</th>\n      <th>temperature</th>\n      <th>dewpoint</th>\n      <th>rain</th>\n      <th>snowfall</th>\n      <th>surface_pressure</th>\n      <th>cloudcover_total</th>\n      <th>cloudcover_low</th>\n      <th>cloudcover_mid</th>\n      <th>cloudcover_high</th>\n      <th>windspeed_10m</th>\n      <th>winddirection_10m</th>\n      <th>shortwave_radiation</th>\n      <th>direct_solar_radiation</th>\n      <th>diffuse_radiation</th>\n      <th>latitude</th>\n      <th>longitude</th>\n      <th>data_block_id</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2021-09-01 00:00:00</td>\n      <td>14.4</td>\n      <td>12.0</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>1015.8</td>\n      <td>4</td>\n      <td>4</td>\n      <td>0</td>\n      <td>0</td>\n      <td>6.694444</td>\n      <td>3</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>57.6</td>\n      <td>21.7</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mforecast weather data has 3424512 rows and 18 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "   latitude  longitude            origin_datetime  hours_ahead  temperature  \\\n0      57.6       21.7  2021-09-01 00:00:00+00:00            1    15.655786   \n\n    dewpoint  cloudcover_high  cloudcover_low  cloudcover_mid  \\\n0  11.553613         0.904816        0.019714             0.0   \n\n   cloudcover_total  10_metre_u_wind_component  10_metre_v_wind_component  \\\n0          0.905899                  -0.411328                  -9.106137   \n\n   data_block_id          forecast_datetime  direct_solar_radiation  \\\n0              1  2021-09-01 01:00:00+00:00                     0.0   \n\n   surface_solar_radiation_downwards  snowfall  total_precipitation  \n0                                0.0       0.0                  0.0  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>latitude</th>\n      <th>longitude</th>\n      <th>origin_datetime</th>\n      <th>hours_ahead</th>\n      <th>temperature</th>\n      <th>dewpoint</th>\n      <th>cloudcover_high</th>\n      <th>cloudcover_low</th>\n      <th>cloudcover_mid</th>\n      <th>cloudcover_total</th>\n      <th>10_metre_u_wind_component</th>\n      <th>10_metre_v_wind_component</th>\n      <th>data_block_id</th>\n      <th>forecast_datetime</th>\n      <th>direct_solar_radiation</th>\n      <th>surface_solar_radiation_downwards</th>\n      <th>snowfall</th>\n      <th>total_precipitation</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>57.6</td>\n      <td>21.7</td>\n      <td>2021-09-01 00:00:00+00:00</td>\n      <td>1</td>\n      <td>15.655786</td>\n      <td>11.553613</td>\n      <td>0.904816</td>\n      <td>0.019714</td>\n      <td>0.0</td>\n      <td>0.905899</td>\n      <td>-0.411328</td>\n      <td>-9.106137</td>\n      <td>1</td>\n      <td>2021-09-01 01:00:00+00:00</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>0.0</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34melectricity prices data has 15286 rows and 4 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "         forecast_date  euros_per_mwh          origin_date  data_block_id\n0  2021-09-01 00:00:00          92.51  2021-08-31 00:00:00              1",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>forecast_date</th>\n      <th>euros_per_mwh</th>\n      <th>origin_date</th>\n      <th>data_block_id</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2021-09-01 00:00:00</td>\n      <td>92.51</td>\n      <td>2021-08-31 00:00:00</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mgas prices data has 637 rows and 5 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "  forecast_date  lowest_price_per_mwh  highest_price_per_mwh origin_date  \\\n0    2021-09-01                 45.23                  46.32  2021-08-31   \n\n   data_block_id  \n0              1  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>forecast_date</th>\n      <th>lowest_price_per_mwh</th>\n      <th>highest_price_per_mwh</th>\n      <th>origin_date</th>\n      <th>data_block_id</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2021-09-01</td>\n      <td>45.23</td>\n      <td>46.32</td>\n      <td>2021-08-31</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001B[1m\u001B[34mlocation data data has 75 rows and 3 columns. \n",
-      " ===> First row:\u001B[0m\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": "   county  longitude  latitude\n0       0       24.2      59.1",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>county</th>\n      <th>longitude</th>\n      <th>latitude</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0</td>\n      <td>24.2</td>\n      <td>59.1</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Location from https://www.kaggle.com/datasets/michaelo/fabiendaniels-mapping-locations-and-county-codes/data\n",
     "location = (pd.read_csv(\"/kaggle/input/fabiendaniels-mapping-locations-and-county-codes/county_lon_lats.csv\")\n",
@@ -472,7 +366,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 8,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:53:16.321437Z",
@@ -484,13 +378,494 @@
    },
    "outputs": [
     {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mtrain data has 2018352 rows and 9 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
      "data": {
-      "text/plain": "          0        1            2         3          4              5  \\\n0  HARJUMAA  HIIUMAA  IDA-VIRUMAA  JÄRVAMAA  JÕGEVAMAA  LÄÄNE-VIRUMAA   \n\n          6         7         8         9        10        11       12  \\\n0  LÄÄNEMAA  PÄRNUMAA  PÕLVAMAA  RAPLAMAA  SAAREMAA  TARTUMAA  UNKNOWN   \n\n         13           14       15  \n0  VALGAMAA  VILJANDIMAA  VÕRUMAA  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>0</th>\n      <th>1</th>\n      <th>2</th>\n      <th>3</th>\n      <th>4</th>\n      <th>5</th>\n      <th>6</th>\n      <th>7</th>\n      <th>8</th>\n      <th>9</th>\n      <th>10</th>\n      <th>11</th>\n      <th>12</th>\n      <th>13</th>\n      <th>14</th>\n      <th>15</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HARJUMAA</td>\n      <td>HIIUMAA</td>\n      <td>IDA-VIRUMAA</td>\n      <td>JÄRVAMAA</td>\n      <td>JÕGEVAMAA</td>\n      <td>LÄÄNE-VIRUMAA</td>\n      <td>LÄÄNEMAA</td>\n      <td>PÄRNUMAA</td>\n      <td>PÕLVAMAA</td>\n      <td>RAPLAMAA</td>\n      <td>SAAREMAA</td>\n      <td>TARTUMAA</td>\n      <td>UNKNOWN</td>\n      <td>VALGAMAA</td>\n      <td>VILJANDIMAA</td>\n      <td>VÕRUMAA</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>county</th>\n",
+       "      <th>is_business</th>\n",
+       "      <th>product_type</th>\n",
+       "      <th>target</th>\n",
+       "      <th>is_consumption</th>\n",
+       "      <th>datetime</th>\n",
+       "      <th>data_block_id</th>\n",
+       "      <th>row_id</th>\n",
+       "      <th>prediction_unit_id</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0.713</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2021-09-01 00:00:00</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   county  is_business  product_type  target  is_consumption  \\\n",
+       "0       0            0             1   0.713               0   \n",
+       "\n",
+       "              datetime  data_block_id  row_id  prediction_unit_id  \n",
+       "0  2021-09-01 00:00:00              0       0                   0  "
+      ]
      },
-     "execution_count": 9,
      "metadata": {},
-     "output_type": "execute_result"
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mclient data has 41919 rows and 7 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>product_type</th>\n",
+       "      <th>county</th>\n",
+       "      <th>eic_count</th>\n",
+       "      <th>installed_capacity</th>\n",
+       "      <th>is_business</th>\n",
+       "      <th>date</th>\n",
+       "      <th>data_block_id</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>108</td>\n",
+       "      <td>952.89</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2021-09-01</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   product_type  county  eic_count  installed_capacity  is_business  \\\n",
+       "0             1       0        108              952.89            0   \n",
+       "\n",
+       "         date  data_block_id  \n",
+       "0  2021-09-01              2  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mhistorical weather data has 1710800 rows and 18 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>datetime</th>\n",
+       "      <th>temperature</th>\n",
+       "      <th>dewpoint</th>\n",
+       "      <th>rain</th>\n",
+       "      <th>snowfall</th>\n",
+       "      <th>surface_pressure</th>\n",
+       "      <th>cloudcover_total</th>\n",
+       "      <th>cloudcover_low</th>\n",
+       "      <th>cloudcover_mid</th>\n",
+       "      <th>cloudcover_high</th>\n",
+       "      <th>windspeed_10m</th>\n",
+       "      <th>winddirection_10m</th>\n",
+       "      <th>shortwave_radiation</th>\n",
+       "      <th>direct_solar_radiation</th>\n",
+       "      <th>diffuse_radiation</th>\n",
+       "      <th>latitude</th>\n",
+       "      <th>longitude</th>\n",
+       "      <th>data_block_id</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>2021-09-01 00:00:00</td>\n",
+       "      <td>14.4</td>\n",
+       "      <td>12.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1015.8</td>\n",
+       "      <td>4</td>\n",
+       "      <td>4</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>6.694444</td>\n",
+       "      <td>3</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>57.6</td>\n",
+       "      <td>21.7</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "              datetime  temperature  dewpoint  rain  snowfall  \\\n",
+       "0  2021-09-01 00:00:00         14.4      12.0   0.0       0.0   \n",
+       "\n",
+       "   surface_pressure  cloudcover_total  cloudcover_low  cloudcover_mid  \\\n",
+       "0            1015.8                 4               4               0   \n",
+       "\n",
+       "   cloudcover_high  windspeed_10m  winddirection_10m  shortwave_radiation  \\\n",
+       "0                0       6.694444                  3                  0.0   \n",
+       "\n",
+       "   direct_solar_radiation  diffuse_radiation  latitude  longitude  \\\n",
+       "0                     0.0                0.0      57.6       21.7   \n",
+       "\n",
+       "   data_block_id  \n",
+       "0              1  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mforecast weather data has 3424512 rows and 18 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>latitude</th>\n",
+       "      <th>longitude</th>\n",
+       "      <th>origin_datetime</th>\n",
+       "      <th>hours_ahead</th>\n",
+       "      <th>temperature</th>\n",
+       "      <th>dewpoint</th>\n",
+       "      <th>cloudcover_high</th>\n",
+       "      <th>cloudcover_low</th>\n",
+       "      <th>cloudcover_mid</th>\n",
+       "      <th>cloudcover_total</th>\n",
+       "      <th>10_metre_u_wind_component</th>\n",
+       "      <th>10_metre_v_wind_component</th>\n",
+       "      <th>data_block_id</th>\n",
+       "      <th>forecast_datetime</th>\n",
+       "      <th>direct_solar_radiation</th>\n",
+       "      <th>surface_solar_radiation_downwards</th>\n",
+       "      <th>snowfall</th>\n",
+       "      <th>total_precipitation</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>57.6</td>\n",
+       "      <td>21.7</td>\n",
+       "      <td>2021-09-01 00:00:00+00:00</td>\n",
+       "      <td>1</td>\n",
+       "      <td>15.655786</td>\n",
+       "      <td>11.553613</td>\n",
+       "      <td>0.904816</td>\n",
+       "      <td>0.019714</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.905899</td>\n",
+       "      <td>-0.411328</td>\n",
+       "      <td>-9.106137</td>\n",
+       "      <td>1</td>\n",
+       "      <td>2021-09-01 01:00:00+00:00</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   latitude  longitude            origin_datetime  hours_ahead  temperature  \\\n",
+       "0      57.6       21.7  2021-09-01 00:00:00+00:00            1    15.655786   \n",
+       "\n",
+       "    dewpoint  cloudcover_high  cloudcover_low  cloudcover_mid  \\\n",
+       "0  11.553613         0.904816        0.019714             0.0   \n",
+       "\n",
+       "   cloudcover_total  10_metre_u_wind_component  10_metre_v_wind_component  \\\n",
+       "0          0.905899                  -0.411328                  -9.106137   \n",
+       "\n",
+       "   data_block_id          forecast_datetime  direct_solar_radiation  \\\n",
+       "0              1  2021-09-01 01:00:00+00:00                     0.0   \n",
+       "\n",
+       "   surface_solar_radiation_downwards  snowfall  total_precipitation  \n",
+       "0                                0.0       0.0                  0.0  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34melectricity prices data has 15286 rows and 4 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>forecast_date</th>\n",
+       "      <th>euros_per_mwh</th>\n",
+       "      <th>origin_date</th>\n",
+       "      <th>data_block_id</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>2021-09-01 00:00:00</td>\n",
+       "      <td>92.51</td>\n",
+       "      <td>2021-08-31 00:00:00</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         forecast_date  euros_per_mwh          origin_date  data_block_id\n",
+       "0  2021-09-01 00:00:00          92.51  2021-08-31 00:00:00              1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mgas prices data has 637 rows and 5 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>forecast_date</th>\n",
+       "      <th>lowest_price_per_mwh</th>\n",
+       "      <th>highest_price_per_mwh</th>\n",
+       "      <th>origin_date</th>\n",
+       "      <th>data_block_id</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>2021-09-01</td>\n",
+       "      <td>45.23</td>\n",
+       "      <td>46.32</td>\n",
+       "      <td>2021-08-31</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  forecast_date  lowest_price_per_mwh  highest_price_per_mwh origin_date  \\\n",
+       "0    2021-09-01                 45.23                  46.32  2021-08-31   \n",
+       "\n",
+       "   data_block_id  \n",
+       "0              1  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m\u001b[34mlocation data data has 75 rows and 3 columns. \n",
+      " ===> First row:\u001b[0m\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>county</th>\n",
+       "      <th>longitude</th>\n",
+       "      <th>latitude</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>24.2</td>\n",
+       "      <td>59.1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   county  longitude  latitude\n",
+       "0       0       24.2      59.1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
     }
    ],
    "source": [
@@ -505,7 +880,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 9,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:53:16.406694Z",
@@ -518,10 +893,79 @@
    "outputs": [
     {
      "data": {
-      "text/plain": "            count    mean      std  min   0%  0.1%    1%    5%   10%    25%  \\\ntarget  1008912.0  460.71  1198.95  0.0  0.0  0.28  1.86  6.42  12.0  34.51   \n\n          50%     75%     90%      95%      99%     99.9%       max  \ntarget  108.9  386.97  972.05  1567.52  7141.02  12369.16  15480.27  ",
-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>count</th>\n      <th>mean</th>\n      <th>std</th>\n      <th>min</th>\n      <th>0%</th>\n      <th>0.1%</th>\n      <th>1%</th>\n      <th>5%</th>\n      <th>10%</th>\n      <th>25%</th>\n      <th>50%</th>\n      <th>75%</th>\n      <th>90%</th>\n      <th>95%</th>\n      <th>99%</th>\n      <th>99.9%</th>\n      <th>max</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>target</th>\n      <td>1008912.0</td>\n      <td>460.71</td>\n      <td>1198.95</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>0.28</td>\n      <td>1.86</td>\n      <td>6.42</td>\n      <td>12.0</td>\n      <td>34.51</td>\n      <td>108.9</td>\n      <td>386.97</td>\n      <td>972.05</td>\n      <td>1567.52</td>\n      <td>7141.02</td>\n      <td>12369.16</td>\n      <td>15480.27</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "      <th>2</th>\n",
+       "      <th>3</th>\n",
+       "      <th>4</th>\n",
+       "      <th>5</th>\n",
+       "      <th>6</th>\n",
+       "      <th>7</th>\n",
+       "      <th>8</th>\n",
+       "      <th>9</th>\n",
+       "      <th>10</th>\n",
+       "      <th>11</th>\n",
+       "      <th>12</th>\n",
+       "      <th>13</th>\n",
+       "      <th>14</th>\n",
+       "      <th>15</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>HARJUMAA</td>\n",
+       "      <td>HIIUMAA</td>\n",
+       "      <td>IDA-VIRUMAA</td>\n",
+       "      <td>JÄRVAMAA</td>\n",
+       "      <td>JÕGEVAMAA</td>\n",
+       "      <td>LÄÄNE-VIRUMAA</td>\n",
+       "      <td>LÄÄNEMAA</td>\n",
+       "      <td>PÄRNUMAA</td>\n",
+       "      <td>PÕLVAMAA</td>\n",
+       "      <td>RAPLAMAA</td>\n",
+       "      <td>SAAREMAA</td>\n",
+       "      <td>TARTUMAA</td>\n",
+       "      <td>UNKNOWN</td>\n",
+       "      <td>VALGAMAA</td>\n",
+       "      <td>VILJANDIMAA</td>\n",
+       "      <td>VÕRUMAA</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          0        1            2         3          4              5  \\\n",
+       "0  HARJUMAA  HIIUMAA  IDA-VIRUMAA  JÄRVAMAA  JÕGEVAMAA  LÄÄNE-VIRUMAA   \n",
+       "\n",
+       "          6         7         8         9        10        11       12  \\\n",
+       "0  LÄÄNEMAA  PÄRNUMAA  PÕLVAMAA  RAPLAMAA  SAAREMAA  TARTUMAA  UNKNOWN   \n",
+       "\n",
+       "         13           14       15  \n",
+       "0  VALGAMAA  VILJANDIMAA  VÕRUMAA  "
+      ]
      },
-     "execution_count": 10,
+     "execution_count": 9,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -535,7 +979,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 10,
    "metadata": {
     "execution": {
      "iopub.execute_input": "2023-11-11T09:53:16.435995Z",
@@ -764,19 +1208,7 @@
      "shell.execute_reply.started": "2023-11-11T09:53:16.492159Z"
     }
    },
-   "outputs": [
-    {
-     "ename": "NameError",
-     "evalue": "name 'FeatureProcessorClass' is not defined",
-     "output_type": "error",
-     "traceback": [
-      "\u001B[1;31m---------------------------------------------------------------------------\u001B[0m",
-      "\u001B[1;31mNameError\u001B[0m                                 Traceback (most recent call last)",
-      "File \u001B[1;32m<timed exec>:4\u001B[0m\n",
-      "\u001B[1;31mNameError\u001B[0m: name 'FeatureProcessorClass' is not defined"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "def create_revealed_targets_train(data, N_day_lags):\n",
     "    '''🎯 Create past revealed_targets for train set based on number of day lags N_day_lags 🎯 '''    \n",
@@ -2136,7 +2568,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\u001B[1m\u001B[34mThere are 59 features: ['county', 'is_business', 'product_type', 'is_consumption', 'prediction_unit_id', 'year', 'quarter', 'month', 'week', 'hour', 'day_of_year', 'day_of_month', 'day_of_week', 'eic_count_client', 'installed_capacity_client', 'temperature_h_mean', 'dewpoint_h_mean', 'rain_h_mean', 'snowfall_h_mean', 'surface_pressure_h_mean', 'cloudcover_total_h_mean', 'cloudcover_low_h_mean', 'cloudcover_mid_h_mean', 'cloudcover_high_h_mean', 'windspeed_10m_h_mean', 'winddirection_10m_h_mean', 'shortwave_radiation_h_mean', 'direct_solar_radiation_h_mean', 'diffuse_radiation_h_mean', 'temperature_f_mean', 'dewpoint_f_mean', 'cloudcover_high_f_mean', 'cloudcover_low_f_mean', 'cloudcover_mid_f_mean', 'cloudcover_total_f_mean', '10_metre_u_wind_component_f_mean', '10_metre_v_wind_component_f_mean', 'direct_solar_radiation_f_mean', 'surface_solar_radiation_downwards_f_mean', 'snowfall_f_mean', 'total_precipitation_f_mean', 'euros_per_mwh_electricity', 'lowest_price_per_mwh_gas', 'highest_price_per_mwh_gas', 'mean_price_per_mwh_gas', 'target_2_days_ago', 'target_3_days_ago', 'target_4_days_ago', 'target_5_days_ago', 'target_6_days_ago', 'target_7_days_ago', 'target_8_days_ago', 'target_9_days_ago', 'target_10_days_ago', 'target_11_days_ago', 'target_12_days_ago', 'target_13_days_ago', 'target_14_days_ago', 'target_15_days_ago']\u001B[0m\n"
+      "\u001b[1m\u001b[34mThere are 59 features: ['county', 'is_business', 'product_type', 'is_consumption', 'prediction_unit_id', 'year', 'quarter', 'month', 'week', 'hour', 'day_of_year', 'day_of_month', 'day_of_week', 'eic_count_client', 'installed_capacity_client', 'temperature_h_mean', 'dewpoint_h_mean', 'rain_h_mean', 'snowfall_h_mean', 'surface_pressure_h_mean', 'cloudcover_total_h_mean', 'cloudcover_low_h_mean', 'cloudcover_mid_h_mean', 'cloudcover_high_h_mean', 'windspeed_10m_h_mean', 'winddirection_10m_h_mean', 'shortwave_radiation_h_mean', 'direct_solar_radiation_h_mean', 'diffuse_radiation_h_mean', 'temperature_f_mean', 'dewpoint_f_mean', 'cloudcover_high_f_mean', 'cloudcover_low_f_mean', 'cloudcover_mid_f_mean', 'cloudcover_total_f_mean', '10_metre_u_wind_component_f_mean', '10_metre_v_wind_component_f_mean', 'direct_solar_radiation_f_mean', 'surface_solar_radiation_downwards_f_mean', 'snowfall_f_mean', 'total_precipitation_f_mean', 'euros_per_mwh_electricity', 'lowest_price_per_mwh_gas', 'highest_price_per_mwh_gas', 'mean_price_per_mwh_gas', 'target_2_days_ago', 'target_3_days_ago', 'target_4_days_ago', 'target_5_days_ago', 'target_6_days_ago', 'target_7_days_ago', 'target_8_days_ago', 'target_9_days_ago', 'target_10_days_ago', 'target_11_days_ago', 'target_12_days_ago', 'target_13_days_ago', 'target_14_days_ago', 'target_15_days_ago']\u001b[0m\n"
      ]
     }
    ],
@@ -3028,7 +3460,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\u001B[1m\u001B[34mEarly stopping on best iteration #659 with MAE error on validation set of 72.96\u001B[0m\n"
+      "\u001b[1m\u001b[34mEarly stopping on best iteration #659 with MAE error on validation set of 72.96\u001b[0m\n"
      ]
     }
    ],
