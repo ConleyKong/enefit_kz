@@ -59,9 +59,9 @@ class FeatureProcessor():
     
     def create_new_column_names(self, df, suffix, columns_no_change):
         '''Change column names by given suffix, keep columns_no_change, and return back the data'''
-        df.columns = [col + suffix
-                      if col not in columns_no_change
-                      else col
+        df.columns = [col
+                      if col in columns_no_change
+                      else col + suffix
                       for col in df.columns
                       ]
         return df
@@ -75,6 +75,8 @@ class FeatureProcessor():
         '''📊Create features for main data (test or train) set📊'''
         # To datetime
         data['datetime'] = pd.to_datetime(data['datetime'])
+        
+        # todo: 当前周期对应上个周期（上周今日，昨天此时）的值作为一个特征（可以躲避对于日照时长的计算）
         
         # Time period features
         data['date'] = data['datetime'].dt.normalize()
@@ -117,6 +119,12 @@ class FeatureProcessor():
         
         # Group by & calculate aggregate stats
         agg_columns = [col for col in historical_weather.columns if col not in self.lat_lon_columns + self.weather_join]
+        # TODO：仅仅是对列值取均值是不够的，高温，潮湿，温差过大都会降低发电效率
+        #  TODO： （当前温度-露点温度）应该作为一个特征，因为当温度低于露点时将意味着发电能力下降
+        # temperature:温度，dewpoint:露点温度，rain:毫米降雨量 snowfall:厘米降雪量 surface_pressure：大气压
+        # cloudcover_:中高低空云层遮盖率，windspeed_10m：10米高空风速 shortwave_radiation：短波辐射量（wh/m2）
+        # direct_solar_radiation: 直射辐射值，diffuse_radiation：散射辐射值，latitude/longitude经纬度，data_block_id：数据id
+        # 更多电池板发电影响因素的信息：https://www.75xn.com/26488.html
         agg_dict = {agg_col: self.agg_stats for agg_col in agg_columns}
         historical_weather = historical_weather.groupby(self.weather_join).agg(agg_dict).reset_index()
         
@@ -179,6 +187,8 @@ class FeatureProcessor():
         # Test set has 1 day offset
         electricity['datetime'] = electricity['forecast_date'] + pd.DateOffset(1)
         
+        # 只有一个euros_per_mwh电价指标是有用的
+        # todo 建议将上一个小时或者过去三小时或者昨天此时的电价分别作为一个特征用于预测
         # Modify column names - specify suffix
         electricity = self.create_new_column_names(electricity,
                                                    suffix='_electricity',
@@ -190,7 +200,7 @@ class FeatureProcessor():
         '''⛽ Create gas prices features ⛽'''
         # Mean gas price
         gas['mean_price_per_mwh'] = (gas['lowest_price_per_mwh'] + gas['highest_price_per_mwh']) / 2
-        
+        #todo 需要考虑上一个小时或者过去三小时或者昨天此时的燃气价格
         # Modify column names - specify suffix
         gas = self.create_new_column_names(gas,
                                            suffix='_gas',
@@ -307,6 +317,8 @@ class MyPredictor:
                 eval_set=[(tr[self.features], tr[self.target]), (val[self.features], val[self.target])],
                 verbose=True  # False #True
                 )
+        import pickle
+        pickle.dump(self.clf,open(f"./model.pickle",'wb+'))
 
         # Plot RMSE
         import matplotlib.pyplot as plt
@@ -319,6 +331,7 @@ class MyPredictor:
         ax.legend()
         plt.ylabel("MAE Loss")
         plt.title("XGBoost MAE Loss")
+        plt.savefig('./loss.jpg')
         plt.show()
         
         # 绘制特征重要度
@@ -342,6 +355,7 @@ class MyPredictor:
             count += 1
 
         plt.title(f'The top {TOP} features sorted by importance')
+        plt.savefig('./importance.jpg')
         plt.show()
 
         not_important_feats = importance_data[importance_data['importance'] < 0.0005].name.values
