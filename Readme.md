@@ -15,6 +15,7 @@
 * gas_price同样的处理逻辑，对于price_per_mwh，需要考虑上一个小时或者过去三小时或者昨天此时的燃气价格
 
 ## 2023年12月19日
+* 增加h的温度-露点作为特征,mae降低到73.6885，日志记录中增加了完整的特征重要度排序结果的排序输出
 * 复现了notebook中的代码，实现了实验的正常运行，并为程序以及xgboost增加了输出到文件的日志记录能力，Epoch: 700, validation_1: mae: 73.80073650056661
 * 特征重要度: 'county' 'highest_price_per_mwh_gas' 'day_of_month'
  'mean_price_per_mwh_gas' 'temperature_h_mean' 'prediction_unit_id' 'year'

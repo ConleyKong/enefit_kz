@@ -170,6 +170,7 @@ class FeatureProcessor():
                                                  else x['datetime'] + pd.DateOffset(2),
                                                  axis=1)
                                           )
+        historical_weather['dewtemp_h']=historical_weather['temperature_h_mean']-historical_weather['dewpoint_h_mean']
         
         return historical_weather
     
@@ -207,6 +208,10 @@ class FeatureProcessor():
         
         # Flatten the multi column aggregates
         forecast_weather = self.flatten_multi_index_columns(forecast_weather)
+        # 增加这个特征后的mae反而会变大
+        # forecast_weather['dewtemp_f'] = forecast_weather['temperature_f_mean'] - forecast_weather[
+        #     'dewpoint_f_mean']
+
         return forecast_weather
     
     def create_electricity_features(self, electricity):
@@ -394,7 +399,8 @@ class MyPredictor:
         plt.show()
 
         not_important_feats = importance_data[importance_data['importance'] < 0.0005].name.values
-        logger.info(f"特征重要度: {not_important_feats}")
+        logger.info(f"末尾特征重要度排序: {not_important_feats}")
+        logger.info(f">>> 特征重要度排序: {importance_data.to_string()}")
 
     def create_revealed_targets_test(self, data, previous_revealed_targets, n_day_lags):
         '''🎯 Create new test data based on previous_revealed_targets and N_day_lags 🎯 '''
