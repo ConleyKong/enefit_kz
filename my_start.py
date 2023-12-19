@@ -8,8 +8,8 @@
     Change Activity: 
         2023/12/17 :    创建并初始化本文件        
 """
-import os
-import sys
+import os,sys,time
+from pathlib import Path
 
 if "win" in sys.platform:
     USING_LINUX = False
@@ -24,16 +24,46 @@ import numpy as np
 import pandas as pd
 # Visualization
 import seaborn as sns
-import matplotlib.pyplot as plt
-from colorama import Fore, Style, init
-# Geolocation
-from geopy.geocoders import Nominatim
+# import matplotlib.pyplot as plt
+# from colorama import Fore, Style, init
+# # Geolocation
+# from geopy.geocoders import Nominatim
 # Options
 pd.set_option('display.max_columns', 100)
 # Modeling
 import xgboost as xgb
 import torch
+# 项目公用根目录
+if 'win' in sys.platform:
+    project_dir = os.path.abspath(os.path.dirname(__file__))
+else:
+    project_dir = os.getcwd()
+from loguru import logger
+# 初始化日志目录
+t = time.strftime("%Y_%m_%d")
+log_path = Path(project_dir,"logs")
+logger.add(f"{log_path}/{t}.log", rotation="50MB", encoding="utf-8", enqueue=True, retention="5 days")
+logger.info(f">>> using logpath: {log_path}")
+logger.info(f">>> using root_dir: {project_dir}")
 
+# xgboost日志记录
+# https://stackoverflow.com/questions/46619974/save-the-output-of-xgb-train-of-xgboost-as-a-log-file-with-python-logging
+class XGBLogging(xgb.callback.TrainingCallback):
+    """log train logs to file"""
+
+    def __init__(self, epoch_log_interval=100):
+        self.epoch_log_interval = epoch_log_interval
+
+    def after_iteration(self, model, epoch, evals_log):
+        if epoch % self.epoch_log_interval == 0:
+            for data, metric in evals_log.items():
+                metrics = list(metric.keys())
+                metrics_str = ""
+                for m_key in metrics:
+                    metrics_str = metrics_str + f"{m_key}: {metric[m_key][-1]}"
+                logger.info(f"Epoch: {epoch}, {data}: {metrics_str}")
+        # False to indicate training should not stop.
+        return False
 
 class FeatureProcessor():
     def __init__(self):
@@ -53,7 +83,7 @@ class FeatureProcessor():
         self.category_columns = ['county', 'is_business', 'product_type', 'is_consumption', 'data_block_id']
         
         # Location from https://www.kaggle.com/datasets/michaelo/fabiendaniels-mapping-locations-and-county-codes/data
-        self.location = (pd.read_csv("/kaggle/input/fabiendaniels-mapping-locations-and-county-codes/county_lon_lats.csv")
+        self.location = (pd.read_csv(f"{project_dir}/data/fabiendaniels-mapping-locations-and-county-codes/county_lon_lats.csv")
                     .drop(columns=["Unnamed: 0"])
                     )
     
@@ -242,6 +272,9 @@ class MyPredictor:
         self.cls = None
         self.target = None
         self.features = None
+        self.output_dir = f"{project_dir}/outputs"
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
     
     def preprocess(self,x):
         pass
@@ -262,7 +295,7 @@ class MyPredictor:
         return data
     
     def train(self):
-        DATA_DIR = "./data/predict-energy-behavior-of-prosumers/"
+        DATA_DIR = f"{project_dir}/data/predict-energy-behavior-of-prosumers/"
     
         # Read CSVs and parse relevant date columns
         train = pd.read_csv(DATA_DIR + "train.csv")
@@ -312,13 +345,15 @@ class MyPredictor:
             n_estimators=2 if self.DEBUG else 1500,
             early_stopping_rounds=100
         )
+        # add logger
         self.clf.fit(X=tr[self.features],
                 y=tr[self.target],
                 eval_set=[(tr[self.features], tr[self.target]), (val[self.features], val[self.target])],
-                verbose=True  # False #True
+                verbose=True,  # False #True
+                callbacks=[XGBLogging(epoch_log_interval=100)]
                 )
         import pickle
-        pickle.dump(self.clf,open(f"./model.pickle",'wb+'))
+        pickle.dump(self.clf,open(f"{self.output_dir}/model.pickle",'wb+'))
 
         # Plot RMSE
         import matplotlib.pyplot as plt
@@ -331,7 +366,7 @@ class MyPredictor:
         ax.legend()
         plt.ylabel("MAE Loss")
         plt.title("XGBoost MAE Loss")
-        plt.savefig('./loss.jpg')
+        plt.savefig(f'{self.output_dir}/loss.jpg')
         plt.show()
         
         # 绘制特征重要度
@@ -355,11 +390,11 @@ class MyPredictor:
             count += 1
 
         plt.title(f'The top {TOP} features sorted by importance')
-        plt.savefig('./importance.jpg')
+        plt.savefig(f'{self.output_dir}/importance.jpg')
         plt.show()
 
         not_important_feats = importance_data[importance_data['importance'] < 0.0005].name.values
-        print(not_important_feats)
+        logger.info(f"特征重要度: {not_important_feats}")
 
     def create_revealed_targets_test(self, data, previous_revealed_targets, n_day_lags):
         '''🎯 Create new test data based on previous_revealed_targets and N_day_lags 🎯 '''

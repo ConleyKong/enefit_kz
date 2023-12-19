@@ -3,3 +3,8 @@ xgboost
 seaborn
 geopy
 torch
+seaborn
+xgboost
+matplotlib
+loguru
+scikit-learn

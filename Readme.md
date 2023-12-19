@@ -14,5 +14,18 @@
 * electricity_price数据中仅一个euros_per_mwh字段是有用的，建议将上一个小时或者过去三小时或者昨天此时的电价分别作为一个特征用于预测
 * gas_price同样的处理逻辑，对于price_per_mwh，需要考虑上一个小时或者过去三小时或者昨天此时的燃气价格
 
+## 2023年12月19日
+* 复现了notebook中的代码，实现了实验的正常运行，并为程序以及xgboost增加了输出到文件的日志记录能力，Epoch: 700, validation_1: mae: 73.80073650056661
+* 特征重要度: 'county' 'highest_price_per_mwh_gas' 'day_of_month'
+ 'mean_price_per_mwh_gas' 'temperature_h_mean' 'prediction_unit_id' 'year'
+ 'target_11_days_ago' 'cloudcover_low_h_mean'
+ '10_metre_u_wind_component_f_mean' 'cloudcover_total_f_mean'
+ 'dewpoint_h_mean' 'target_10_days_ago' 'euros_per_mwh_electricity'
+ '10_metre_v_wind_component_f_mean' 'surface_pressure_h_mean'
+ 'cloudcover_mid_f_mean' 'cloudcover_total_h_mean'
+ 'winddirection_10m_h_mean' 'cloudcover_mid_h_mean' 'rain_h_mean'
+ 'cloudcover_high_f_mean' 'windspeed_10m_h_mean' 'cloudcover_high_h_mean'
+ 'snowfall_h_mean'
+
 ## 2023年12月3日
 * 完成git本地配置以及代码初始化
